@@ -1,9 +1,12 @@
+import ContactForm from '@/app/_components/ContactForm'
+import { createContactAction } from '@/app/actions/contact'
 import React from 'react'
 
-const NewPages = () => {
-    return (
-        <div>New Pages</div>
-    )
+const NewContactPage = () => {
+    return <div className='max-w-md mx-auto p-6 bg-white rounded-lg shadows-md'>
+        <h1 className='text-2xl font-bold mb-6'>Create New Contact</h1>
+        <ContactForm action={createContactAction} />
+    </div>
 }
 
-export default NewPages
+export default NewContactPage
