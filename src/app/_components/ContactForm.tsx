@@ -1,7 +1,9 @@
 "use client"
 
-import React, { useActionState } from 'react'
+import React, { useActionState, useEffect } from 'react'
 import { ContactType } from '../_types/contact';
+import { useRouter } from 'next/navigation';
+import { stat } from 'fs';
 
 type ContactFormProps = {
     action: (prevState: any, formData: FormData) => Promise<any>;
@@ -10,7 +12,15 @@ type ContactFormProps = {
 
 
 const ContactForm = ({ action, contact }: ContactFormProps) => {
+    const router = useRouter()
     const [state, formAction] = useActionState(action, null)
+
+    useEffect(() => {
+        if (state?.success) {
+            router.push("/contact")
+        }
+    }, [state, router])
+
     return (
         <form action={formAction} className="space-x-4">
             <div>
@@ -18,6 +28,7 @@ const ContactForm = ({ action, contact }: ContactFormProps) => {
                 <input
                     type="text"
                     name="name"
+                    defaultValue={contact?.name || ""}
                     placeholder="Enter your Name here"
                     required
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:right-blue-500 sm:text-sm p-2"
@@ -29,11 +40,16 @@ const ContactForm = ({ action, contact }: ContactFormProps) => {
                 <input
                     type="email"
                     name="email"
+                    defaultValue={contact?.email || ""}
                     placeholder="Enter your Email Id here"
                     required
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:right-blue-500 sm:text-sm p-2"
                 />
             </div>
+
+            {state?.error && (
+                <div className='text-red-500 text-sm'>{state.error}</div>
+            )}
 
             <button
                 type="submit"

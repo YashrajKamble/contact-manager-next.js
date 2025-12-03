@@ -10,8 +10,8 @@ export const createContactAction = async (
   prevState: any,
   formData: FormData
 ) => {
-  if (!formData) {
-    return { error: "form data is missing" };
+  if (!formData.get("name")) {
+    return { error: " name is missing" };
   }
   const user = await getSession();
 
