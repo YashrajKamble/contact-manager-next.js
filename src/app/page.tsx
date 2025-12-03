@@ -1,14 +1,12 @@
-import React from 'react'
-import Image from 'next/image'
+import React from "react";
+import Image from "next/image";
 
 const Home = () => {
   return (
     <div className="flex flex-col items-center justify-items-center min-h-screen p-8 gap-5 sm:p-20">
-      <div className='text-center'>
-        <h1 className='text-4xl font-bold'>
-          Welcome to contact manager
-        </h1>
-        <p className='mt-2 text-lg font-bold'>
+      <div className="text-center">
+        <h1 className="text-4xl font-bold">Welcome to contact manager</h1>
+        <p className="mt-2 text-lg font-bold">
           manage your contact easily and efficiently
         </p>
       </div>
@@ -21,14 +19,13 @@ const Home = () => {
            shadow-lg justify-center items-center"
       />
 
-      <div className='text-center'>
-        <p className='mt-2 text-lg font-bold'>
+      <div className="text-center">
+        <p className="mt-2 text-lg font-bold">
           start managing your contacts today!
         </p>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
